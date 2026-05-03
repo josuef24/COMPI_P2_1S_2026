@@ -1,0 +1,188 @@
+1UNIVERSIDAD DE SAN CARLOS DE GUATEMALA
+FACULTAD DE INGENIERÍA
+ESCUELA DE CIENCIAS Y SISTEMAS
+ORGANIZACIÓN DE LENGUAJES Y COMPILADORES 2
+SEGUNDO SEMESTRE 2026
+Ing. Bayron López, Ing. Luis Espino e Ing. Edgar Saban
+Tutores: Diego Cali, Rubén Ralda y Omar Vides
+CALIFICACIÓN PRESENCIAL
+Fecha de calificación:           /           /          Carnet:                                      
+Consideraciones para derecho a calificación
+• Archivos de entrada: Se compartirán durante los días de calificación y solo podrán modificarse antes de iniciar la 
+evaluación, únicamente para eliminar funcionalidades que el estudiante indique que no desarrolló.
+• Modalidad de trabajo:  La modificación se realizará en grupos, pero la calificación será individual. Solo podrán 
+realizar preguntas al tutor, quien no podrá intervenir en la solución.
+• Intentos y tiempo:  El estudiante contará con dos intentos para la verificación. Cada intento tendrá un límite de 
+tiempo definido por los tutores e indicado el día de la calificación. Si falla ambos intentos, la nota será 0 puntos. Si 
+supera la verificación, se procederá con la calificación individual del proyecto.
+• Rama y grabación obligatoria:  El estudiante deberá crear una rama llamada feature/solución para realizar la 
+modificación solicitada. Deberá grabar su pantalla durante todo el proceso, subir la grabación a Drive y compartir el 
+enlace por UEDi.
+• Repositorio:  Solo se calificará si se verifica que la rama de solución fue subida al repositorio en GitHub o GitLab.
+• Aspectos evaluables: Antes de iniciar la calificación, el estudiante deberá indicar en la columna “realizado” los 
+aspectos que serán evaluados; no se considerarán otros durante la evaluación.
+• Sistema operativo:  La calificación se realizará únicamente en distribuciones de Linux.
+• Entorno de desarrollo:  El estudiante debe tener su entorno listo para realizar las modificaciones necesarias que 
+permitan verificar la autoría del código. Si no está listo, no se procederá con la calificación y deberá reprogramarse 
+según los horarios disponibles. Si no hubiera horarios disponibles, deberá coordinar con el tutor de su sección.
+• Uso obligatorio de herramientas: Solo se aceptarán proyectos que hayan sido desarrollados utilizando las 
+herramientas ANTLR y QEMU. El estudiante deberá demostrar, cuando se le solicite, la correcta integración y uso 
+de dichas herramientas en su proyecto. En caso de no evidenciar su uso, el proyecto no será considerado para 
+calificación.
+---PAGE BREAK---
+2Lista de cotejo modificación proyecto 2
+El estudiante debe realizar una modificación en su código previamente desarrollado. Esta modificación tiene como objetivo 
+verificar su capacidad de adaptar y extender funcionalidades, aplicando los conceptos vistos en clase.
+Para garantizar la autoría individual, cada estudiante contará con:
+- 2 oportunidades para realizar la modificación.
+- Un tiempo límite de 15 minutos por cada oportunidad.
+- Se usarán un máximo de dos modificaciones diferentes para el grupo a evaluar, distribuidas de la siguiente manera:
+    - Primer Intento: Se aplica la misma modificación a todos los estudiantes.
+    - Segundo Intento: Si un estudiante requiere la segunda oportunidad, se le asigna una nueva modificación, que será la misma 
+para todos los estudiantes que necesiten este segundo intento.
+Oportunidad 1
+Criterio Estado/Resultado
+1. El estudiante completo el cambio en el tiempo 
+estipulado
+2. Tiempo en que se llevo a cabo la modificación
+3.  Número de modificación
+4. El resultado es el esperado
+5. El estudiante subió los cambios a su rama
+Oportunidad 2
+Criterio Estado/Resultado
+1. El estudiante completo el cambio en el tiempo 
+estipulado
+2. Tiempo en que se llevo a cabo la modificación
+3.  Número de modificación
+4. El resultado es el esperado
+5. El estudiante subió los cambios a su rama
+_____________________                                                      ________________________
+Firma del Alumno                                                                   Firma del tutor académico
+---PAGE BREAK---
+3Hoja de Calificación Proyecto 2
+CriterioPuntos MáximosPuntuación 
+ObtenidaRealizado 
+(estudiante) Observaciones
+1 Funcionalidades 
+Básicas19 0
+1.1 Declaración larga de 
+variables (int32, float32, 
+bool, rune, string) 0.2 
+puntos c/u1
+1.2 Asignación de 
+variables (int32, float32, 
+bool, rune, string) 0.2 
+puntos c/u1
+1.3 Formato de 
+identificadores (no iniciar 
+con caracteres 
+especiales, case sensitive 
+y palabras reservadas) 
+0.1 puntos c/u0.5
+1.4 Declaración corta de 
+variables (int32, float32, 
+bool, rune, string) 0.4 
+puntos c/u2
+1.5 Declaración larga sin 
+inicializar (int32, float32, 
+bool, rune, string) 0.2 
+puntos c/u1
+1.6 Declaración múltiple 
+de variables (larga y 
+corta)2
+1.7 Declaración de 
+constantes 1
+1.8 Manejo de nil 1
+1.9 Comentarios de una 
+línea0.25
+1.10 Comentarios 
+multilínea0.25
+1.11 Operaciones 
+Aritméticas (0.2pts c/u)1
+1.12 Operaciones 
+relacionales (0.2pts c/u)1
+---PAGE BREAK---
+41.13 Operaciones lógicas 
+(1pt c/u)2
+1.14 Restricción de corto 
+circuito3
+1.15 Operadores de 
+asignación (0.4pts c/u)2
+2 Funcionalidades
+Intermedias22 0
+2.2 if 2
+2.3 if else 2
+2.4 switch/case/default 3
+2.5 for clásico 3
+2.6 for condicional 3
+2.7 for infinito 3
+2.8 break 3
+2.9 continue 3
+3 Funciones 23 0
+3.1 Función no recursiva
+sin parámetros 
+(imprimirArbol)2
+3.2 Función con 
+parámetros no recursiva 
+(calcularVolumenPiramide
+)2
+3.3 funciones por 
+referencia 
+(ordenamientoSeleccion e 
+intercambioValores - 2 pts 
+c/u)4
+3.4 función recursiva con 
+un retorno (potencia)5
+3.5 funciones por 
+referencia 
+(ordenamientoSeleccion e 
+intercambioValores - 1.5 
+pts c/u) 5
+3.6 función recursiva con 
+múltiple retorno (Función 
+Algorítmo de Euclides) 5
+4 Funciones embebidas 6 0
+4.1 fmt.Println() 1
+4.2 len() 1
+4.3 now() 1
+---PAGE BREAK---
+54.4 substr() 1
+4.5 typeOf() 2
+5 Arreglos 20 0
+5.1 Declaración 
+multidimensional 
+inicializada y no 
+inicializada (0.5pts c/u)1
+5.2 Acceso y Modificación 
+de elementos en arreglo 
+multidimensional (0.5pts 
+c/u)1
+5.3 Función de Ídice de 
+inestabilidad por fila 
+(Matriz)4
+5.4 Función de regla de 
+Cramer (Matriz + Arreglo)4
+5.5 Función Promedio de 
+Capas (Cubo)5
+5.6 Función Softmax 
+(Retorno de Matriz)5
+6 GUI 4 0
+6.1 Barra de acciones 1
+6.2 Panel de edición de 
+código1
+6.3 Consola de salida 1
+6.4 Panel de reportes 1
+7. Reportes 4 0
+7.1 Tabla de símbolos 2
+7.2 Reporte de Errores 
+(0.2pts por cada tipo de 
+error)2
+8 Documentación 2 0
+8.1 Manual de Usuario 1
+8.2 Manual Técnico 1
+Total 100.00 0.00
+Estoy conforme con la nota obtenida (Sí/No):
+---PAGE BREAK---
+6_____________________                                                      ________________________
+Firma del Alumno                                                                   Firma del tutor académico
+---PAGE BREAK---
