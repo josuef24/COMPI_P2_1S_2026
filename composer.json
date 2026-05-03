@@ -1,0 +1,14 @@
+{
+    "name": "usac/golampi-compiler",
+    "description": "Golampi Compiler in PHP",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "antlr/antlr4-php-runtime": "^0.9.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Golampi\\": ["src/", "src/generated/"]
+        }
+    }
+}

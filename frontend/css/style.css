@@ -1,0 +1,227 @@
+:root {
+    --bg-color: #1e1e1e;
+    --panel-bg: #252526;
+    --header-bg: #333333;
+    --text-color: #d4d4d4;
+    --border-color: #454545;
+    --primary-color: #0e639c;
+    --primary-hover: #1177bb;
+    --secondary-color: #3a3d41;
+    --secondary-hover: #4a4d51;
+    --error-color: #f14c4c;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #61afef;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+}
+.btn.primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn.secondary {
+    background-color: var(--secondary-color);
+}
+.btn.secondary:hover {
+    background-color: var(--secondary-hover);
+}
+
+.workspace {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+.panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+}
+
+.panel-header {
+    background-color: var(--panel-bg);
+    padding: 8px 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border-color);
+    color: #9cdcfe;
+}
+
+.editor-container {
+    display: flex;
+    flex: 1;
+    background-color: #1e1e1e;
+    overflow: hidden;
+}
+
+.line-numbers {
+    padding: 10px 5px;
+    background-color: #1e1e1e;
+    color: #858585;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    text-align: right;
+    min-width: 40px;
+    border-right: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+#code-editor {
+    flex: 1;
+    background-color: transparent;
+    color: #d4d4d4;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 10px;
+    border: none;
+    resize: none;
+    outline: none;
+    white-space: pre;
+    overflow: auto;
+}
+
+#output-console {
+    flex: 1;
+    background-color: #1e1e1e;
+    color: #ce9178;
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    padding: 10px;
+    margin: 0;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
+.reports-panel {
+    height: 30%;
+    background-color: var(--panel-bg);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.reports-tabs {
+    display: flex;
+    background-color: var(--header-bg);
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 8px 15px;
+    color: #858585;
+    cursor: pointer;
+    font-size: 13px;
+    border-top: 2px solid transparent;
+}
+
+.tab-btn:hover {
+    color: var(--text-color);
+}
+
+.tab-btn.active {
+    color: var(--text-color);
+    background-color: var(--panel-bg);
+    border-top: 2px solid var(--primary-color);
+}
+
+#btn-download-arm {
+    margin-left: auto;
+    color: #c586c0;
+}
+
+.reports-content {
+    flex: 1;
+    overflow: auto;
+    padding: 10px;
+}
+
+.report-view {
+    display: none;
+}
+
+.report-view.active {
+    display: block;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.report-table th, .report-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.report-table th {
+    background-color: #2d2d2d;
+    color: #4ec9b0;
+}
+
+.report-table tr:hover {
+    background-color: #2a2d2e;
+}
+
+.empty-msg {
+    color: #858585;
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+}

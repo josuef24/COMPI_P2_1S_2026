@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golampi Compiler</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Action Bar -->
+        <header class="action-bar">
+            <div class="logo">Golampi</div>
+            <div class="actions">
+                <button id="btn-new" class="btn secondary">Nuevo / Limpiar</button>
+                <input type="file" id="file-upload" style="display: none;" accept=".gl,.txt">
+                <button id="btn-load" class="btn secondary">Cargar archivo</button>
+                <button id="btn-save" class="btn secondary">Guardar código</button>
+                <button id="btn-compile" class="btn primary">Compilar</button>
+                <button id="btn-clear-console" class="btn secondary">Limpiar consola</button>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="workspace">
+            <div class="panel code-panel">
+                <div class="panel-header">Editor de Código (Golampi)</div>
+                <div class="editor-container">
+                    <div class="line-numbers" id="line-numbers">1</div>
+                    <textarea id="code-editor" spellcheck="false" placeholder="Escribe tu código Golampi aquí..."></textarea>
+                </div>
+            </div>
+
+            <div class="panel console-panel">
+                <div class="panel-header">Consola de Salida (ARM64)</div>
+                <pre id="output-console"></pre>
+            </div>
+        </main>
+
+        <!-- Reports Panel -->
+        <footer class="reports-panel">
+            <div class="reports-tabs">
+                <button class="tab-btn active" data-target="report-errors">Errores</button>
+                <button class="tab-btn" data-target="report-symbols">Tabla de Símbolos</button>
+                <button class="tab-btn" id="btn-download-arm">Descargar ARM64 (.s)</button>
+            </div>
+            <div class="reports-content">
+                <div id="report-errors" class="report-view active">
+                    <p class="empty-msg">No hay compilaciones recientes.</p>
+                </div>
+                <div id="report-symbols" class="report-view">
+                    <p class="empty-msg">No hay símbolos generados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
