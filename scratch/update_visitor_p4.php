@@ -1,4 +1,6 @@
 <?php
+$content = <<<'EOF'
+<?php
 
 namespace Golampi\compiler;
 
@@ -21,14 +23,12 @@ class GolampiSemanticVisitor extends GolampiBaseVisitor {
     }
     
     public function visitProgram($context) {
-        if ($context->declarations()) {
-            foreach ($context->declarations()->declaration() as $decl) {
-                if ($decl->funcDecl()) {
-                    $funcName = $decl->funcDecl()->ID()->getText();
-                    $retTypeCtx = $decl->funcDecl()->returnType();
+        foreach ($context->statement() as $stmt) {
+            if ($stmt->funcDecl()) {
+                $funcName = $stmt->funcDecl()->ID()->getText();
+                $retTypeCtx = $stmt->funcDecl()->returnType();
                 $retType = $retTypeCtx ? $retTypeCtx->getText() : 'void';
                 $this->funcTable[$funcName] = $retType;
-                }
             }
         }
     
@@ -644,3 +644,5 @@ class GolampiSemanticVisitor extends GolampiBaseVisitor {
         return $ids;
     }
 }
+EOF;
+file_put_contents('c:\Users\user.pc-1\Desktop\golampi 2.0\src\compiler\GolampiSemanticVisitor.php', $content);

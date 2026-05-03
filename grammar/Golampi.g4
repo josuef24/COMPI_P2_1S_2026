@@ -108,6 +108,7 @@ constDecl
 type
     : INT32 | FLOAT32 | BOOL | RUNE | STRING
     | MULT type
+    | arraySizes type
     ;
 
 arraySizes
@@ -240,6 +241,6 @@ expression
     ;
 
 arrayLiteral
-    : type? LBRACE (expression (COMMA expression)*)? RBRACE
-    | arraySizes type LBRACE (arrayLiteral (COMMA arrayLiteral)*)? RBRACE
+    : type? LBRACE (expression (COMMA expression)* COMMA?)? RBRACE
+    | arraySizes type LBRACE (arrayLiteral (COMMA arrayLiteral)* COMMA?)? RBRACE
     ;
