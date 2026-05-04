@@ -99,25 +99,23 @@ class GolampiSemanticVisitor extends GolampiBaseVisitor {
             foreach ($context->paramList()->param() as $paramCtx) {
                 $params[] = ['id' => $paramCtx->ID()->getText(), 'type' => $paramCtx->type()->getText()];
             }
-        }
-        
-        // Offset for parameters (passed on stack before stp x29, x30)
-        // Reverse order because arg N is pushed last (closest to x29)
-        $paramContexts = $context->paramList()->param();
-        $currentOffset = 16;
-        for ($i = count($params) - 1; $i >= 0; $i--) {
-            $pCtx = $paramContexts[$i];
-            $paramSize = $this->calcArraySize($params[$i]['type']);
-            $this->env->declareParam($params[$i]['id'], $params[$i]['type'], $currentOffset, $pCtx->start->getLine(), $pCtx->start->getCharPositionInLine());
-            $this->symbolReport->addSymbol([
-                'name' => $params[$i]['id'],
-                'type' => $params[$i]['type'],
-                'scope' => $funcName,
-                'value' => 'Param (offset ' . $currentOffset . ')',
-                'line' => $pCtx->start->getLine(),
-                'col' => $pCtx->start->getCharPositionInLine()
-            ]);
-            $currentOffset += $paramSize;
+            
+            $paramContexts = $context->paramList()->param();
+            $currentOffset = 16;
+            for ($i = count($params) - 1; $i >= 0; $i--) {
+                $pCtx = $paramContexts[$i];
+                $paramSize = $this->calcArraySize($params[$i]['type']);
+                $this->env->declareParam($params[$i]['id'], $params[$i]['type'], $currentOffset, $pCtx->start->getLine(), $pCtx->start->getCharPositionInLine());
+                $this->symbolReport->addSymbol([
+                    'name' => $params[$i]['id'],
+                    'type' => $params[$i]['type'],
+                    'scope' => $funcName,
+                    'value' => 'Param (offset ' . $currentOffset . ')',
+                    'line' => $pCtx->start->getLine(),
+                    'col' => $pCtx->start->getCharPositionInLine()
+                ]);
+                $currentOffset += $paramSize;
+            }
         }
         
         $this->generator->addText("\n" . $funcName . ":");
@@ -866,7 +864,7 @@ class GolampiSemanticVisitor extends GolampiBaseVisitor {
                 'name' => $id,
                 'type' => $type,
                 'scope' => $this->env->getScopeName(),
-                'value' => 'Const: ' . $val,
+                'value' => 'Const: ' . $context->expression()->getText(),
                 'line' => $line,
                 'col' => $col
             ]);
