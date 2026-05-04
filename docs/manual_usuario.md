@@ -1,52 +1,102 @@
 # Manual de Usuario - Golampi Compiler
 
-## Introducción
-Golampi Compiler es una herramienta académica diseñada para compilar código fuente escrito en el lenguaje Golampi (un dialecto inspirado en Go) a código ensamblador ARM64 (AArch64). 
+## 1. Introducción
+**Golampi Compiler** es una potente herramienta académica diseñada para compilar código fuente escrito en el lenguaje **Golampi** (inspirado en Go) hacia código ensamblador **ARM64** (AArch64). La herramienta ofrece una interfaz web intuitiva para el desarrollo, depuración y visualización de reportes técnicos.
 
-## Instalación y Ejecución
+---
 
-### Requisitos Previos
-- PHP 8.0 o superior
-- Navegador Web moderno (Chrome, Firefox, Edge, Safari)
+## 2. Instalación y Configuración Paso a Paso
 
-### Pasos para iniciar
-1. Abre una terminal en la carpeta raíz del proyecto.
-2. Ejecuta el servidor integrado de PHP:
+### 2.1 Requisitos del Sistema
+- **Sistema Operativo:** Linux (Recomendado), macOS o Windows.
+- **PHP:** Versión 8.0 o superior instalada.
+- **Ensamblador (Opcional para ejecución):** `aarch64-linux-gnu-as` y `ld`.
+- **Emulador (Opcional para ejecución):** `qemu-aarch64`.
+
+### 2.2 Pasos para Instalar
+1. **Descargar el proyecto:** Extrae los archivos en una carpeta local de tu preferencia.
+2. **Preparar Dependencias:** Asegúrate de que el archivo `antlr4.jar` se encuentre en la raíz del proyecto si planeas regenerar la gramática. El proyecto ya incluye las clases generadas en `src/generated`.
+3. **Iniciar Servidor Local:**
+   Abre una terminal en la carpeta raíz del proyecto y ejecuta:
    ```bash
    php -S localhost:8000
    ```
-3. Abre tu navegador web y navega a `http://localhost:8000/`. Serás redirigido a la interfaz principal del compilador.
 
-## Interfaz Gráfica (GUI)
+---
 
-La interfaz gráfica consta de tres áreas principales:
+## 3. Guía de Uso de la Herramienta
 
-1. **Barra de Acciones (Arriba):**
-   - **Nuevo / Limpiar:** Borra el editor de código, la consola y los reportes para iniciar de cero.
-   - **Cargar archivo:** Permite subir un archivo con extensión `.gl` o `.txt` desde tu computadora.
-   - **Guardar código:** Descarga el código actual del editor a tu computadora.
-   - **Compilar:** Inicia el proceso de análisis léxico, sintáctico, semántico y de generación de código ARM64.
-   - **Limpiar consola:** Borra la salida de la consola inferior.
+### 3.1 Acceso a la Interfaz
+Abre tu navegador web y dirígete a `http://localhost:8000/`. Se te presentará el entorno de desarrollo integrado (IDE).
 
-2. **Área de Trabajo (Centro):**
-   - **Editor de Código:** Un área de texto con números de línea para escribir tu código Golampi.
-   - **Consola de Salida:** Muestra el código ensamblador ARM64 generado o los mensajes de error principales de la compilación.
+> [!NOTE]
+> **[INSERTAR AQUÍ CAPTURA DE PANTALLA: INTERFAZ GENERAL DEL COMPILADOR]**
 
-3. **Panel de Reportes (Abajo):**
-   - **Pestaña Errores:** Muestra una tabla detallada con los errores léxicos, sintácticos o semánticos detectados.
-   - **Pestaña Tabla de Símbolos:** Muestra las variables, funciones, arreglos y constantes generadas en el entorno.
-   - **Descargar ARM64 (.s):** Si la compilación fue exitosa, permite descargar el archivo con código ensamblador ARM64 listo para ejecutarse en QEMU.
+### 3.2 Crear y Editar Código
+1. **Editor de Código:** Utiliza el panel izquierdo para escribir tu código. El editor cuenta con numeración de líneas.
+2. **Limpiar Editor:** El botón **"Nuevo"** borra todo el contenido actual para iniciar un nuevo proyecto.
+3. **Cargar Archivo:** El botón **"Cargar Archivo"** permite importar archivos `.go` o `.gl`.
 
-## Escribiendo Código Golampi
+### 3.3 Compilación y Ejecución
+1. **Botón Compilar:** Haz clic en el botón con el ícono de rayo (o texto "Compilar").
+2. **Consola de Salida:** Si la compilación es exitosa, el panel derecho mostrará el código **ARM64** generado.
+3. **Descarga:** Podrás descargar el archivo `.s` resultante para su ensamblaje manual.
 
-El lenguaje soporta:
-- Declaración de variables: `var x int32 = 10` o corta `x := 10`
-- Constantes: `const pi float32 = 3.14`
-- Funciones y función `main`:
-  ```go
-  func main() {
-      fmt.Println("Hola Mundo")
-  }
-  ```
-- Arreglos, operaciones aritméticas, relacionales y lógicas.
-- Estructuras de control de flujo: `if / else`, `for`, `switch`.
+---
+
+## 4. Interpretación de Reportes
+
+### 4.1 Reporte de Errores
+Si tu código contiene errores (Léxicos, Sintácticos o Semánticos), se activará automáticamente la pestaña **"Errores"** en el panel inferior.
+
+> [!NOTE]
+> **[INSERTAR AQUÍ CAPTURA DE PANTALLA: TABLA DE ERRORES]**
+
+- **Léxicos:** Caracteres no reconocidos.
+- **Sintácticos:** Errores en la estructura del código (ej. falta un `;` o un `}`).
+- **Semánticos:** Errores de lógica o tipos (ej. sumar un `string` con un `int`).
+
+### 4.2 Tabla de Símbolos
+Accede a la pestaña **"Tabla de Símbolos"** para visualizar cómo el compilador ha registrado tus variables, funciones y constantes.
+
+> [!NOTE]
+> **[INSERTAR AQUÍ CAPTURA DE PANTALLA: TABLA DE SÍMBOLOS]**
+
+En esta tabla verás:
+- **Nombre:** Identificador de la variable.
+- **Tipo:** `int32`, `float32`, `bool`, `string`, etc.
+- **Ámbito:** Global o el nombre de la función donde se declaró.
+- **Valor/Dirección:** Valor inicial o desplazamiento en la pila (offset).
+
+---
+
+## 5. Ejemplo de Sesión de Uso
+
+### 5.1 Ejemplo de Código: Cálculo de Fibonacci
+Copia y pega el siguiente código en el editor:
+
+```go
+func fibonacci(n int32) int32 {
+    if n <= 1 {
+        return n
+    }
+    return fibonacci(n-1) + fibonacci(n-2)
+}
+
+func main() {
+    var res int32 = fibonacci(7)
+    fmt.Println("Fibonacci de 7 es:", res)
+}
+```
+
+### 5.2 Resultados Esperados
+1. Haz clic en **Compilar**.
+2. Verifica en la **Tabla de Símbolos** que `fibonacci` y `res` estén registrados.
+3. Descarga el código ARM64 y ejecútalo en una terminal con QEMU para ver el resultado: `13`.
+
+---
+
+## 6. Solución de Problemas Comunes
+- **El servidor no inicia:** Verifica que el puerto 8000 no esté ocupado por otra aplicación.
+- **Error de ANTLR:** Asegúrate de tener instalado Java si necesitas regenerar el Parser.
+- **Código no genera ASM:** Revisa la pestaña de Errores Semánticos; es posible que haya una incompatibilidad de tipos en tu código.

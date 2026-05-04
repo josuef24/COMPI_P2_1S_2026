@@ -44,6 +44,15 @@ class GolampiSemanticVisitor extends GolampiBaseVisitor {
                     $sym['returnTypes'] = $returnTypes;
                     $this->env->update($funcName, $sym);
                     
+                    $this->symbolReport->addSymbol([
+                        'name' => $funcName,
+                        'type' => 'func',
+                        'scope' => 'global',
+                        'value' => 'Function',
+                        'line' => $funcCtx->start->getLine(),
+                        'col' => $funcCtx->start->getCharPositionInLine()
+                    ]);
+                    
                     // Keep funcTable for compatibility
                     $this->funcTable[$funcName] = count($returnTypes) > 0 ? $returnTypes[0] : 'void';
                 }
@@ -94,10 +103,20 @@ class GolampiSemanticVisitor extends GolampiBaseVisitor {
         
         // Offset for parameters (passed on stack before stp x29, x30)
         // Reverse order because arg N is pushed last (closest to x29)
+        $paramContexts = $context->paramList()->param();
         $currentOffset = 16;
         for ($i = count($params) - 1; $i >= 0; $i--) {
+            $pCtx = $paramContexts[$i];
             $paramSize = $this->calcArraySize($params[$i]['type']);
-            $this->env->declareParam($params[$i]['id'], $params[$i]['type'], $currentOffset);
+            $this->env->declareParam($params[$i]['id'], $params[$i]['type'], $currentOffset, $pCtx->start->getLine(), $pCtx->start->getCharPositionInLine());
+            $this->symbolReport->addSymbol([
+                'name' => $params[$i]['id'],
+                'type' => $params[$i]['type'],
+                'scope' => $funcName,
+                'value' => 'Param (offset ' . $currentOffset . ')',
+                'line' => $pCtx->start->getLine(),
+                'col' => $pCtx->start->getCharPositionInLine()
+            ]);
             $currentOffset += $paramSize;
         }
         
@@ -549,6 +568,15 @@ class GolampiSemanticVisitor extends GolampiBaseVisitor {
             
             if ($this->env->declare($id, $type, false, $sizeBytes, $line, $col)) {
                 $sym = $this->env->get($id);
+                $this->symbolReport->addSymbol([
+                    'name' => $id,
+                    'type' => $type,
+                    'scope' => $this->env->getScopeName(),
+                    'value' => $sym['isGlobal'] ? 'Global (' . $sym['label'] . ')' : 'Local (offset ' . $sym['offset'] . ')',
+                    'line' => $line,
+                    'col' => $col
+                ]);
+                $sym = $this->env->get($id);
                 if ($sym['isGlobal']) {
                     $this->generator->addData($sym['label'], ".skip", $sizeBytes);
                     $this->generator->addText("    adrp x1, " . $sym['label']);
@@ -833,6 +861,15 @@ class GolampiSemanticVisitor extends GolampiBaseVisitor {
         $col = $context->start->getCharPositionInLine();
         
         if ($this->env->declare($id, $type, true, 8, $line, $col)) {
+            $sym = $this->env->get($id);
+            $this->symbolReport->addSymbol([
+                'name' => $id,
+                'type' => $type,
+                'scope' => $this->env->getScopeName(),
+                'value' => 'Const: ' . $val,
+                'line' => $line,
+                'col' => $col
+            ]);
             $sym = $this->env->get($id);
             if ($sym['isGlobal']) {
                 $this->generator->addData($sym['label'], ".quad", 0);
