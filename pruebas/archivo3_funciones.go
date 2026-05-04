@@ -108,9 +108,9 @@ func calcularVolumenPiramide(base float32, altura float32) float32 {
 }
 
 func intercambioValores(x *int32, y *int32) {
-	temp := x
-	x = y
-	y = temp
+	temp := *x
+	*x = *y
+	*y = temp
 }
 
 func ordenamientoSeleccion(arr *[5]int32) {
@@ -146,9 +146,9 @@ func euclides(a int32, b int32) (int32, int32) {
 
 func intercambioValoresValidado(x *int32, y *int32) {
 	if x != nil && y != nil {
-		temp := x
-		x = y
-		y = temp
+		temp := *x
+		*x = *y
+		*y = temp
 	}
 }
 

@@ -16,13 +16,15 @@ class Environment {
         $this->offsetTracker = $offsetTracker;
     }
 
-    public function declare($name, $type, $isConst = false, $size = 8, $line = 0, $col = 0) {
+    public function declare($name, $type, $isConst = false, $size = 8, $line = 0, $col = 0, $label = null) {
         if (isset($this->symbols[$name])) {
             return false;
         }
         
         if ($this->isGlobal) {
-            $label = 'var_' . str_replace('.', '_', uniqid());
+            if ($label === null) {
+                $label = 'var_' . $name . '_' . str_replace('.', '_', uniqid());
+            }
             $this->symbols[$name] = [
                 'name' => $name,
                 'type' => $type,
@@ -72,6 +74,17 @@ class Environment {
             'size' => 8
         ];
         return true;
+    }
+
+    public function update($name, $data) {
+        if (isset($this->symbols[$name])) {
+            $this->symbols[$name] = $data;
+            return true;
+        }
+        if ($this->parent !== null) {
+            return $this->parent->update($name, $data);
+        }
+        return false;
     }
 
     public function get($name) {

@@ -3,7 +3,7 @@
         'name' => 'usac/golampi-compiler',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '944a95a9a72c2df4a6e3e546adce430294c98eb7',
+        'reference' => '3e3fbba5d65f734cc4e71eb89bd026716d090e3c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'usac/golampi-compiler' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '944a95a9a72c2df4a6e3e546adce430294c98eb7',
+            'reference' => '3e3fbba5d65f734cc4e71eb89bd026716d090e3c',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
